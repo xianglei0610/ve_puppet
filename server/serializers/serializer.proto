@@ -1,0 +1,45 @@
+
+// protoc -I=. --python_out=. serializer.proto
+
+syntax = "proto3";
+package serializer;
+
+
+message Serializer {
+  string character = 1;
+  oneof character_choices {
+    Executor executor = 2;
+    Commander commander = 3;
+    Collector collector = 4;
+    Raiser raiser = 5;
+  }
+}
+
+
+message Executor {
+  string command = 1;
+  repeated string args = 2;
+  string origin = 3;
+}
+
+
+message Commander {
+  string command = 1;
+  repeated string clients = 2;
+  repeated string args = 3;
+}
+
+
+message Collector {
+  string info = 1;
+}
+
+
+message Raiser {
+  string command = 1;
+  repeated string args = 2;
+  string origin = 3;
+  string response = 4;
+  string exception = 5;
+}
+
